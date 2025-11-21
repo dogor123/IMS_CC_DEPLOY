@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+  mysql:
+    image: tebancito/ims_cc_mysql:latest
+    container_name: ims_mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  web:
+    image: tebancito/ims_cc:latest
+    container_name: ims_web
+    depends_on:
+      - mysql
+    ports:
+      - "8090:80"
+    restart: always
